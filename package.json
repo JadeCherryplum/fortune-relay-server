@@ -1,0 +1,14 @@
+{
+  "name": "fortunelight-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FortuneLight kiosk coordination server and QR web page",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

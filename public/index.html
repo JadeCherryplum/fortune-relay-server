@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111010" />
+    <title>Fortune Light</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card" aria-labelledby="page-title">
+        <p class="eyebrow">FORTUNE LIGHT</p>
+        <h1 id="page-title">생년월일을 알려주세요</h1>
+        <p id="station-label" class="station">체험 화면을 확인하고 있습니다.</p>
+
+        <form id="birth-form" hidden>
+          <label for="birth-date">생년월일</label>
+          <input id="birth-date" name="birthDate" type="date" min="1900-01-01" required />
+          <button id="submit-button" type="submit">결과 확인하기</button>
+        </form>
+
+        <div id="message" class="message" role="status" aria-live="polite"></div>
+        <button id="retry-button" class="secondary" type="button" hidden>다시 확인</button>
+      </section>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
