@@ -6,8 +6,4 @@ coverage/
 backup/
 work/
 *.pid
-public/ProtoType/**/Thumbs.db
-public/ProtoType/**/htaccess
-public/ProtoType/img/thelightofwisdom*.html
-public/ProtoType/font/NotoSerifSC-*.ttf
-!public/ProtoType/font/NotoSerifSC-VariableFont_wght.ttf
+public/ProtoType/
