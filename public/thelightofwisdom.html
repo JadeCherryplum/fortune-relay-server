@@ -1075,6 +1075,19 @@ function drawStars(t){
 }
 addEventListener('resize',initStars); initStars(); requestAnimationFrame(drawStars);
 
+/* ===== 효과음 ===== */
+const dateSound = new Audio('/assets/sound/date.wav');
+const startSound = new Audio('/assets/sound/start.wav');
+const buttonSound = new Audio('/assets/sound/btn.wav');
+[dateSound,startSound,buttonSound].forEach(audio=>{ audio.preload='auto'; });
+function playSound(audio){
+  if(!audio) return;
+  audio.pause();
+  audio.currentTime=0;
+  const playPromise=audio.play();
+  if(playPromise && typeof playPromise.catch==='function') playPromise.catch(()=>{});
+}
+
 /* ===== S1 휠 피커 ===== */
 const ITEM_H = 46;
 const nowY = new Date().getFullYear();
@@ -1101,8 +1114,19 @@ function buildWheel(col, values, selectedValue, onSettle){
   col.scrollTop = target * ITEM_H;
   markCenter(col);
   let scrollT = null;
+  let lastCenterIndex = Math.round(col.scrollTop / ITEM_H);
+  let userScrolling = false;
+  const beginUserScroll = ()=>{ userScrolling=true; };
+  col.onpointerdown=beginUserScroll;
+  col.ontouchstart=beginUserScroll;
+  col.onwheel=beginUserScroll;
+  col.onkeydown=beginUserScroll;
   col.onscroll = ()=>{
-    markCenter(col);
+    const centerIndex = markCenter(col);
+    if(centerIndex!==lastCenterIndex){
+      if(userScrolling) playSound(dateSound);
+      lastCenterIndex=centerIndex;
+    }
     clearTimeout(scrollT);
     scrollT = setTimeout(()=>{
       const i = Math.round(col.scrollTop / ITEM_H);
@@ -1116,6 +1140,7 @@ function markCenter(col){
   const items = col.querySelectorAll('.wheel-item');
   const i = Math.round(col.scrollTop / ITEM_H);
   items.forEach((el,idx)=>el.classList.toggle('wheel-center', idx===i));
+  return i;
 }
 
 function renderYear(){
@@ -1194,6 +1219,7 @@ function playS2(){
   }
 }
 document.getElementById('skip').onclick=()=>{
+  playSound(buttonSound);
   clearInterval(progTimer);
   const vid=document.getElementById('s2video'); vid.pause();
   showResult();
@@ -1271,6 +1297,7 @@ let claimPending = false;
 
 document.getElementById('go').onclick=async()=>{
   if(claimPending) return;
+  playSound(startSound);
 
   const calculatedResult = calc(dob.y, dob.m, dob.d);
   if(!calculatedResult){ toast('변환 가능한 날짜 범위(1000~2050년)를 벗어났습니다'); return; }
@@ -1305,7 +1332,10 @@ document.getElementById('go').onclick=async()=>{
     goButton.disabled = false;
   }
 };
-document.getElementById('share').onclick=saveResultImage;
+document.getElementById('share').onclick=()=>{
+  playSound(buttonSound);
+  saveResultImage();
+};
 /* 점괘 결과를 세로형 이미지(PNG)로 렌더링하여 저장 */
 async function saveResultImage(){
   if(!result) return;
