@@ -124,6 +124,7 @@ h1.title{font-family:'ChosunGs',serif;font-size:9vw;font-weight:400;letter-spaci
 .s3-eyebrow{font-family:var(--ff-body);font-weight:var(--fw-light);font-size:var(--fs-s3-eyebrow);color:#f0af53}
 .s3-title{font-family:var(--ff-body);font-weight:var(--fw-bold);font-size:var(--fs-s3-title);letter-spacing:.06em;color:#f1f1f1;
   text-shadow:0 0 10px var(--sasin,#80f0f9), 0 0 0px var(--sasin,#80f0f9)}
+.s3-title.jamiwon{font-size:clamp(34px,10vw,46px);white-space:nowrap}
 .s3-rel{display:inline-block;margin-top:5px;font-family:var(--ff-title);font-size:var(--fs-s3-rel);letter-spacing:.1em;color:#ffffff}
 .card{position:relative;background:var(--ink2);border:1px solid var(--line);border-radius:4px;padding:34px 34px 30px;margin-bottom:26px;animation:rise .9s ease both}
 .card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--sasin,#e8b24a);opacity:.85}
@@ -1252,7 +1253,9 @@ function showResult(){
   const r=result, su=r.su, sas=SASIN[su['사신']];
   document.documentElement.style.setProperty('--sasin', sas.hex);
   document.querySelectorAll('.card').forEach(c=>c.style.setProperty('--sasin', sas.hex));
-  document.getElementById('r-title').textContent = `${su['수']}(${su['한자']})`;
+  const resultTitle = document.getElementById('r-title');
+  resultTitle.textContent = `${su['수']}(${su['한자']})`;
+  resultTitle.classList.toggle('jamiwon', su['수']==='자미원');
   const sasinLabel = su['수']==='자미원' ? '자미원' : su['사신'];
   document.getElementById('r-rel').textContent =
     `${r.oh}(${OH_HANJA[r.oh]}) × ${sasinLabel} · ${r.rel}`;
