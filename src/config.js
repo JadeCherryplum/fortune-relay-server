@@ -1,25 +1,25 @@
 const DEFAULT_CLIENTS = [
   {
-    clientId: "fortune-light-01",
-    stationId: "fortune-light-01",
+    clientId: "by-fortune-light-01",
+    stationId: "by-fortune-light-01",
     displayName: "Fortune Light 1",
     apiKey: "development-key-01",
   },
   {
-    clientId: "fortune-light-02",
-    stationId: "fortune-light-02",
+    clientId: "by-fortune-light-02",
+    stationId: "by-fortune-light-02",
     displayName: "Fortune Light 2",
     apiKey: "development-key-02",
   },
   {
-    clientId: "fortune-light-03",
-    stationId: "fortune-light-03",
+    clientId: "by-fortune-light-03",
+    stationId: "by-fortune-light-03",
     displayName: "Fortune Light 3",
     apiKey: "development-key-03",
   },
   {
-    clientId: "fortune-light-04",
-    stationId: "fortune-light-04",
+    clientId: "by-fortune-light-04",
+    stationId: "by-fortune-light-04",
     displayName: "Fortune Light 4",
     apiKey: "development-key-04",
   },

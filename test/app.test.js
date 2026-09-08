@@ -106,7 +106,9 @@ test("serves the station page from short QR paths", async () => {
       const response = await fetch(`${baseUrl}/${stationNumber}`);
       assert.equal(response.status, 200);
       assert.match(response.headers.get("content-type"), /^text\/html/);
-      assert.match(await response.text(), /shortStationMatch/);
+      const html = await response.text();
+      assert.match(html, /shortStationMatch/);
+      assert.match(html, /by-fortune-light-/);
     }
   });
 });

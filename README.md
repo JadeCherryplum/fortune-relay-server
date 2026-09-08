@@ -10,7 +10,7 @@ https://fortune.cherryplum.net/3
 https://fortune.cherryplum.net/4
 ```
 
-기존 `/?station=fortune-light-01` 형식도 계속 사용할 수 있습니다.
+기존 `/?station=by-fortune-light-01` 형식도 계속 사용할 수 있습니다.
 
 ## 동작 원칙
 
