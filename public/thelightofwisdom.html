@@ -1295,7 +1295,9 @@ function showResult(){
 
 
 /* ===== 액션 ===== */
-const stationId = new URLSearchParams(location.search).get('station');
+const stationParam = new URLSearchParams(location.search).get('station');
+const shortStationMatch = location.pathname.match(/^\/([1-4])\/?$/);
+const stationId = stationParam || (shortStationMatch ? `fortune-light-${shortStationMatch[1].padStart(2,'0')}` : null);
 let claimPending = false;
 
 document.getElementById('go').onclick=async()=>{

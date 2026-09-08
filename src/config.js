@@ -17,6 +17,12 @@ const DEFAULT_CLIENTS = [
     displayName: "Fortune Light 3",
     apiKey: "development-key-03",
   },
+  {
+    clientId: "fortune-light-04",
+    stationId: "fortune-light-04",
+    displayName: "Fortune Light 4",
+    apiKey: "development-key-04",
+  },
 ];
 
 function parsePositiveInteger(value, fallback) {

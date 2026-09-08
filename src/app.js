@@ -77,8 +77,11 @@ function clientKey(req) {
 }
 
 async function serveStatic(pathname, res) {
+  const isShortStationPath = /^\/[1-4]\/?$/.test(pathname);
   const requestedPath =
-    pathname === "/" ? "thelightofwisdom.html" : pathname.slice(1);
+    pathname === "/" || isShortStationPath
+      ? "thelightofwisdom.html"
+      : pathname.slice(1);
   const normalizedPath = normalize(requestedPath).replace(/^(\.\.(\/|\\|$))+/, "");
   const filePath = join(PUBLIC_DIR, normalizedPath);
 

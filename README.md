@@ -1,13 +1,16 @@
 # FortuneLight Server
 
 DB와 사용자 세션 없이, 3대 내외의 FortuneLight Unity 클라이언트를 조율하는
-단일 Node.js 서버입니다. 각 QR은 같은 웹페이지를 열되 `station` 쿼리만 다릅니다.
+단일 Node.js 서버입니다. 각 QR은 같은 웹페이지를 열되 짧은 화면 번호 경로로 클라이언트를 구분합니다.
 
 ```text
-https://fortune.cherryplum.net/?station=fortune-light-01
-https://fortune.cherryplum.net/?station=fortune-light-02
-https://fortune.cherryplum.net/?station=fortune-light-03
+https://fortune.cherryplum.net/1
+https://fortune.cherryplum.net/2
+https://fortune.cherryplum.net/3
+https://fortune.cherryplum.net/4
 ```
+
+기존 `/?station=fortune-light-01` 형식도 계속 사용할 수 있습니다.
 
 ## 동작 원칙
 

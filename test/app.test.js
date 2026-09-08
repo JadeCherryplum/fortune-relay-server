@@ -99,3 +99,14 @@ test("rejects invalid credentials and invalid birth dates", async () => {
     assert.equal(invalidBirthDate.status, 422);
   });
 });
+
+test("serves the station page from short QR paths", async () => {
+  await withServer(async (baseUrl) => {
+    for (const stationNumber of [1, 2, 3, 4]) {
+      const response = await fetch(`${baseUrl}/${stationNumber}`);
+      assert.equal(response.status, 200);
+      assert.match(response.headers.get("content-type"), /^text\/html/);
+      assert.match(await response.text(), /shortStationMatch/);
+    }
+  });
+});
